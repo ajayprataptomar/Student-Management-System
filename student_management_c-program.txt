@@ -1,0 +1,372 @@
+/*
+Ajay Tomar
+25-11-2022
+Program based on structure to sort student result according to
+roll no, alphabetical order and by highest- lowest marks.
+*/
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<process.h>
+struct student {
+ char name[20];
+ int roll;
+ int phy;
+ int chem;
+ int mat;
+ int total;
+ int per;
+} s[10],temp_s;
+
+int getdata();
+void sorting( );
+void search();
+int display(int,int);
+void rp_card(int);
+int i,j,choice,n;
+int main()
+{
+  clrscr();
+  printf("\n\n\t\t\t\t*WELCOME TO* \n");
+  printf("\t\t\t . STUDENT - MANAGEMENT\n");
+  printf("\t\t\t\tPROGRAM");
+  printf("\n\n\n\n\n\n\n\n\n\n\nMade By Ajay Tomar");
+  printf("\t\t\t\t\tUnder guidance of");
+  printf("\nSection E\t\t\t");
+  printf("\t\t\tNikhlesh Pathik Sir\n");
+  printf("B.tech(CSE)");
+  printf("\nEnrollment no : A60205222260");
+  printf("\n\nPress ENTER to Continue....");
+  getch();
+  clrscr();
+  getdata();
+
+  ///////////////////Menu/////////////////////
+  while(choice!=8)
+  {
+   clrscr();
+   printf("\t\n---------------------\tMenu\t---------------------\n\n");
+   printf("\t1.Student List According to Roll No.\n");
+   printf("\t2.Student list Accordig to Alphabeticall order\n");
+   printf("\t3.Student List According to Physic Numbers.\n");
+   printf("\t4.Student List According to chemisty Numbers.\n");
+   printf("\t5.Student List According to Maths Number.\n");
+   printf("\t6.Search for student record\n");
+   printf("\t7.Display students Report card\n");
+   printf("\t8.Exit\n\n");
+   printf("\t\n----------------------------------------------------\n");
+   printf("Press key beetween 1 to 8\n");
+   scanf("%d",&choice);
+
+////////////////////sorting according to roll no/////////////////////////
+   switch(choice)
+   {
+      case 1:
+	      clrscr();
+	      for(i=1; i<=n; i++)
+	      sorting();
+	      break;
+////////////////////////////sorting according to name////////
+
+      case 2:
+	       clrscr();
+	       for(i=1; i<=n; i++)
+	       sorting();
+	       break;
+
+ //////////////////////sorting according to physic no.//////////////
+
+     case 3 :
+	       clrscr();
+	       for(i=1; i<=n; i++)
+	       sorting();
+	       break;
+////////////////////sorting according to chemistry number/////////////
+
+     case 4:
+		clrscr();
+		for(i=1; i<=n; i++)
+		sorting();
+		break;
+
+/////////////////////sorting according to maths number/////////////
+     case 5 :
+	      clrscr();
+	      for(i=1; i<=n; i++)
+	      sorting();
+	      break;
+
+     case 6 :
+	       search();
+	       break;
+
+     case 7 :
+	       rp_card(n);
+	       break;
+
+     case 8 : exit(0);
+	      break;
+
+     default :
+	      printf("Invalid Input\n");
+	      printf("\nPress ENTER to Exit");
+	      getch();
+	      exit(0);
+
+   }
+
+  }
+/////////////////////////////////////////////////
+getch();
+return 0;
+}
+
+int getdata()
+{
+  printf("\n----* Insert Student Data *----\n\n");
+  do{
+  printf("Enter Number of student :\n ");
+  scanf("%d",&n);
+  }while((n<0) || (n>11));
+       for(i=1; i<=n; i++)
+       {
+       clrscr();
+       printf("Enter %d Student Name :\n",i);
+       scanf("%s",&s[i].name);
+       printf("Enter %d Student Roll No. :\n",i);
+       scanf("%d",&s[i].roll);
+       do{
+       printf("Enter physic no :\n");
+       scanf("%d",&s[i].phy);
+       }while((s[i].phy<0) || (s[i].phy>100));
+       do{
+       printf("Enter chemistry no :\n");
+       scanf("%d",&s[i].chem);
+       }while((s[i].chem<0) || (s[i].chem>100));
+       do{
+       printf("Enter maths no :\n");
+       scanf("%d",&s[i].mat);
+       }while((s[i].mat<0) || (s[i].mat>100));
+       clrscr();
+       }
+  display(1,n);
+  printf("Press ENTER to continue......");
+  getch();
+return 0;
+}
+
+void sorting()
+{
+
+      for(i=1; i<=n; i++)
+      {
+	for(j=i+1; j<=n; j++)
+	{
+
+	if(choice==1)
+	{
+	    if(s[i].roll>s[j].roll)
+	     {
+	       temp_s=s[i];
+	       s[i]=s[j];
+	       s[j]=temp_s;
+	     }
+
+	  }
+
+
+	    if(choice==5)
+	    {
+	     if(s[i].mat<s[j].mat)
+	     {
+	       temp_s=s[i];
+	       s[i]=s[j];
+	       s[j]=temp_s;
+	     }
+
+	    }
+	   if(choice==3)
+	   {
+	     if(s[i].phy<s[j].phy)
+	     {
+	       temp_s=s[i];
+	       s[i]=s[j];
+	       s[j]=temp_s;
+
+	     }
+
+	   }
+
+	   if(choice==4)
+	   {
+	   if(s[i].chem<s[j].chem)
+	    {
+		temp_s=s[i];
+	       s[i]=s[j];
+	       s[j]=temp_s;
+
+	    }
+
+	   }
+
+	   if(choice==2)
+	   {
+	    if(strcmp(s[i].name,s[j].name)>0)
+	     {
+	       temp_s=s[i];
+	       s[i]=s[j];
+	       s[j]=temp_s;
+
+	     }
+
+	    }
+
+
+	}
+      }
+
+   if(choice==2)
+   printf("\n\t\t** List Of Student as per Name. **\n\n");
+   else if(choice==1)
+   printf("\n\t\t** List Of Student as per Roll no. **\n\n");
+   else if(choice==3)
+   printf("\n\t\t** List Of Student as per Physics no. **\n\n");
+   else if(choice==5)
+   printf("\n\t\t** List Of Student as per Maths no. **\n\n");
+   else if(choice==4)
+   printf("\n\t\t** List Of Student as per Chemistry no. **\n\n");
+
+
+
+   display(1,n);
+   printf("Press ENTER to continue......");
+   getch();
+}
+
+void search()
+{
+
+
+char sn[10];
+int sr,ch;
+
+ clrscr();
+ printf("\n1.Search By Name\n");
+ printf("2.Search By Roll No.\n");
+ scanf("%d",&ch);
+ clrscr();
+   if(ch==1)
+   {
+     printf("Enter Student Name\n");
+     scanf("%s",&sn);
+     clrscr();
+     for(i=1; i<=n; i++)
+     {
+	 clrscr();
+	 if(strcmp(sn,s[i].name)==0)
+	 {
+	   printf("\n\t\t** Search Results by Name. **\n\n");
+	   display(i,i);
+
+	 }
+	 else
+	 {
+	    printf("No Record Found");
+	 }
+
+
+     }
+
+   }
+
+
+   else if(ch==2)
+   {
+       printf("Enter Student Roll no.\n");
+       scanf("%d",&sr);
+       clrscr();
+       for(i=1; i<=n; i++)
+       {
+	  clrscr();
+	  if(sr==s[i].roll)
+	  {
+	    printf("\n\t\t** Search Result by Roll No. **\n\n");
+	    display(i,i);
+
+	  }
+	  else
+	  {
+	    printf("No Record Found");
+	  }
+
+       }
+
+     }
+     else
+     {
+     printf("\nInvalid Input");
+     printf("\nPress ENTER To Exit");
+     getch();
+     exit(0);
+     }
+printf("\n\n\n\n\n\n\n\n\Press Enter to back to Menu.....");
+getch();
+}
+
+int display(int a,int b)
+{
+
+  printf("-------------------------------------------------------------------------------\n");
+  printf(" Name Of Student ");
+  printf("\tRoll no. ") ;
+  printf(" Chemistry no. ");
+  printf(" Physics no. ");
+  printf(" Maths no.\n");
+  printf("-------------------------------------------------------------------------------\n");
+  for(i=a; i<=b; i++)
+  {
+       printf("%s\t\t",s[i].name);
+       printf("\t%d\t\t",s[i].roll);
+       printf("%d\t\t",s[i].chem);
+       printf(" %d \t ",s[i].phy);
+       printf(" %d\t\t",s[i].mat);
+       printf("\n");
+
+ }
+
+ return 0;
+
+}
+void rp_card(int n)
+{
+      clrscr();
+      for(i=1; i<=n; i++)
+      {
+       clrscr();
+       s[i].total = s[i].phy+s[i].chem+s[i].mat;
+       s[i].per=(s[i].total*100)/300;
+       printf("\t\t\t ** Report card ** \t\n\n\n");
+       printf("\n---------------------------------------------------------------------\n");
+       printf("Student Name :\t%s\t\t",s[i].name);
+       printf("Roll No :\t%d\n",s[i].roll);
+       printf("\n---------------------------------------------------------------------\n");
+       printf("Chemistry:\t\t%d\n",s[i].chem);
+       printf("Physics\t :\t\t%d\n",s[i].phy);
+       printf("Maths\t :\t\t%d\n",s[i].mat);
+       printf("\n");
+       printf("\n---------------------------------------------------------------------\n");
+       printf("Marks :\t%d/300\t\t Percentage : \t%d\n",s[i].total,s[i].per);
+       printf("Result :");
+       if(s[i].per>=33)
+       printf("Passed");
+       else
+       printf("Failed");
+       printf("\n---------------------------------------------------------------------\n");
+       getch();
+      }
+
+
+}
+
+
